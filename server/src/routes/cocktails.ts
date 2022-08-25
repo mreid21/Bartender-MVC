@@ -5,3 +5,5 @@ const cocktailRoute = express.Router();
 
 cocktailRoute.get('/', getCocktails)
 cocktailRoute.post('/', createCockTail)
+
+export {cocktailRoute}

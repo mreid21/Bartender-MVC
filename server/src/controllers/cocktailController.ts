@@ -13,7 +13,9 @@ const createCockTail: RequestHandler = (req, res) => {
     const {name, price} = req.body
 
     cocktails.push({id: counter++, name, price})
-    res.status(201).send(cocktails)
+
+    //send new cocktail after db
+    res.sendStatus(201)
 }
 
 

@@ -1,11 +1,14 @@
+import 'dotenv/config'
+import { config } from 'dotenv'
+config({path: '../.env'})
 import { RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
 
-
-const SECRET = '25C2EB8716AA4472146BD16B6BA94'
+const SECRET = process.env.SECRET as string
 
 const authenticate: RequestHandler = (req, res, next) => {
     const authHeader = req.headers.authorization;
+    
    
     if(authHeader){
         const authToken = authHeader.split(' ')[1];

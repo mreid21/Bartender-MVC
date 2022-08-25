@@ -1,7 +1,7 @@
 export interface Cocktail {
     id: number,
     name: string,
-    price: string
+    price: number
 }
 
 export interface CocktailOrder extends Cocktail {

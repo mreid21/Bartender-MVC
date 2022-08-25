@@ -1,0 +1,29 @@
+{
+  "name": "bartender-mvc",
+  "version": "1.0.0",
+  "description": "an app demonstrating my node and react capabilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mreid21/Bartender-MVC.git"
+  },
+  "author": "Matt Reid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mreid21/Bartender-MVC/issues"
+  },
+  "homepage": "https://github.com/mreid21/Bartender-MVC#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "express": "^4.18.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "jest": "^28.1.3",
+    "supertest": "^6.2.4"
+  }
+}

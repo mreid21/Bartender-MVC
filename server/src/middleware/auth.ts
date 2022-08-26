@@ -26,5 +26,7 @@ const authenticate: RequestHandler = (req, res, next) => {
     }
 }
 
+const getToken = (data: Object): string => jwt.sign(data, SECRET, {expiresIn: '1hr'})
 
-export {authenticate};
+
+export {authenticate, getToken};

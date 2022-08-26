@@ -1,7 +1,10 @@
-import { isBartender } from "../utils/typeguards";
-import { RequestHandler } from "express";
+
 import prisma  from '../prisma-init'
+import bcrypt from 'bcrypt'
+import { RequestHandler } from "express";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { isBartender } from "../utils/typeguards";
+import { getToken } from "../middleware/auth";
 
 
 const login: RequestHandler = async (req, res) => {
@@ -12,9 +15,22 @@ const login: RequestHandler = async (req, res) => {
         const {username, password} = credentials
 
         try {
-            const bartender = await prisma.bartender.findUnique({where: {username}})
-
-            res.status(200).send(bartender)
+            const bartender = await prisma.bartender.findUnique({
+                where: {
+                    username
+                },
+                select: {
+                    username: true,
+                    password: true
+                }
+            })
+            if(bartender) {
+                const isValidCredentials = await bcrypt.compare(password, bartender.password)
+                isValidCredentials ? res.status(200).send({token: getToken({username})}) : res.status(401).send({message: 'Invalid Credentials'})
+            }
+            else {
+                res.status(404).send({message: 'user not found'})
+            }
         }
         catch(e: unknown) {
             if(e instanceof PrismaClientKnownRequestError) {
@@ -31,11 +47,14 @@ const createBartender: RequestHandler = async (req, res) => {
     if(credentials){
         const {username, password} = credentials
 
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(password, salt)
+
         try {
             const newBartender = await prisma.bartender.create({
                 data: {
                     username,
-                    password
+                    password: hash
                 }
             })
 

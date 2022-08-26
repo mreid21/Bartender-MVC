@@ -17,7 +17,7 @@ model Bartender {
 
 model Cocktail {
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
   price Decimal
   belongsTo OrderItem[]
 }

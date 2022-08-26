@@ -1,16 +1,13 @@
+import { isBartender } from "@App/utils/typeguards";
 import e, { RequestHandler } from "express";
-import { Bartender } from "../models/user";
+import { Bartender } from "../models/bartender";
 
-const users: Bartender[] = [{id: 1, username: 'mreid21', password: '1234'}]
 
 const login: RequestHandler = (req, res) => {
-    const user = users.find((user) => user.username === req.params.username)
+    const credentials = isBartender(req.body) ? req.body : undefined
 
-    if(user){
-        res.status(200).send({token: 'weojrwoien328h9hgha20'})
-    }
-    else {
-        res.sendStatus(404)
+    if(credentials){
+        const {username, password} = credentials
     }
 }
 

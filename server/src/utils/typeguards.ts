@@ -1,4 +1,5 @@
-import { Cocktail } from "@prisma/client";
+import { Cocktail } from "@App/models/cocktail"
+import { Bartender } from "@App/models/bartender"
 
 const isCockTail = (body: unknown): body is Cocktail => {
   if(!body) return false
@@ -12,6 +13,16 @@ const isCockTail = (body: unknown): body is Cocktail => {
 
 }
 
+const isBartender = (body: unknown): body is Bartender => {
+  if(!body) return false
+
+  if(typeof body === 'object' && (body.hasOwnProperty('username') || body.hasOwnProperty('password'))){
+    const {username, password} = body as Bartender
+    return typeof username === 'string' && typeof username === 'string'
+  }
+
+  return false
+}
 
 
-export {isCockTail}
+export {isCockTail, isBartender}

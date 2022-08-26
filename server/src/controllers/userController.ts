@@ -1,7 +1,7 @@
 import e, { RequestHandler } from "express";
-import { User } from "../models/user";
+import { Bartender } from "../models/user";
 
-const users: User[] = [{id: 1, username: 'mreid21', password: '1234', role: 'BARTENDER'}]
+const users: Bartender[] = [{id: 1, username: 'mreid21', password: '1234'}]
 
 const login: RequestHandler = (req, res) => {
     const user = users.find((user) => user.username === req.params.username)

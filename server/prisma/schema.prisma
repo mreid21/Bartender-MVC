@@ -17,16 +17,24 @@ model Bartender {
 
 model Cocktail {
   id Int @id @default(autoincrement())
-  name String @unique
+  name String
   price Decimal
+  belongsTo OrderItem[]
+}
+
+
+model OrderItem {
+  cockTailId Int
   orderId Int
-  orders Order[]
+  @@id([cockTailId, orderId])
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  cocktail Cocktail @relation(fields: [cockTailId], references: [id])
 }
 
 
 model Order {
   id Int @id @default(autoincrement())
-  orderedAt DateTime 
-  cocktailId Int
-  cocktail Cocktail @relation(fields: [cocktailId], references: [id])
+  total Decimal
+  orderedAt DateTime
+  items OrderItem[]
 }

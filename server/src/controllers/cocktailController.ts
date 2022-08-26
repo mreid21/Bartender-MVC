@@ -1,20 +1,37 @@
 import { RequestHandler } from "express";
-import { Cocktail } from "../models/cocktail";
+import prisma from '../prisma-init';
+import { isCockTail } from '../utils/typeguards';
 
-//change to db later
-let cocktails: Cocktail[] = []
-let counter = 1
 
-const getCocktails: RequestHandler = (_, res) => {
-    res.status(200).send(cocktails)
+const getCocktails: RequestHandler = async (_, res) => {
+    const menu = await prisma.cocktail.findMany({
+        select: {
+            id: true,
+            name: true,
+            price: true
+        }
+    })
+
+    res.status(200).send(menu)
 }
 
-const createCockTail: RequestHandler = (req, res) => {
-    const {name, price} = req.body
+const createCockTail: RequestHandler = async (req, res) => {
+    
+    const newCocktail = isCockTail(req.body) ? req.body : undefined
 
-    cocktails.push({id: counter++, name, price})
-
-    res.status(201).send(cocktails[cocktails.length - 1])
+    if(newCocktail){
+        const {name, price} = newCocktail
+        const cocktail = await prisma.cocktail.create({
+            data: {
+                name,
+                price
+            }
+        })
+        res.status(201).send(cocktail)
+    }
+    else {
+        res.status(400).send({message: 'Invalid Request'})
+    }
 }
 
 

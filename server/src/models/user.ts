@@ -1,10 +1,9 @@
-type Role = 'CUSTOMER' | 'BARTENDER'
 
-export interface User {
+
+export interface Bartender {
     id: number,
     username: string,
-    password: string,
-    role: Role
+    password: string
 }
 
 //utility types

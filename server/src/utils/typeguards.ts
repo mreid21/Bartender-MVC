@@ -1,5 +1,5 @@
-import { Cocktail } from "@App/models/cocktail"
-import { Bartender } from "@App/models/bartender"
+import { Cocktail } from "../models/cocktail"
+import { Bartender } from "../models/bartender"
 
 const isCockTail = (body: unknown): body is Cocktail => {
   if(!body) return false

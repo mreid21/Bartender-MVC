@@ -1,6 +1,5 @@
-import { isBartender } from "@App/utils/typeguards";
-import e, { RequestHandler } from "express";
-import { Bartender } from "../models/bartender";
+import { isBartender } from "../utils/typeguards";
+import { RequestHandler } from "express";
 
 
 const login: RequestHandler = (req, res) => {

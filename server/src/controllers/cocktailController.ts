@@ -1,3 +1,4 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { RequestHandler } from "express";
 import prisma from '../prisma-init';
 import { isCockTail } from '../utils/typeguards';
@@ -21,13 +22,20 @@ const createCockTail: RequestHandler = async (req, res) => {
 
     if(newCocktail){
         const {name, price} = newCocktail
-        const cocktail = await prisma.cocktail.create({
-            data: {
-                name,
-                price
+        try {
+            const cocktail = await prisma.cocktail.create({
+                data: {
+                    name,
+                    price
+                }
+            })
+            res.status(201).send(cocktail)
+        }
+        catch(e: unknown) {
+            if(e instanceof PrismaClientKnownRequestError && e.code === 'P2002'){
+                res.status(400).send({message: `Cocktail "${name}" already exists`})
             }
-        })
-        res.status(201).send(cocktail)
+        }
     }
     else {
         res.status(400).send({message: 'Invalid Request'})

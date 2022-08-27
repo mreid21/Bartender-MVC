@@ -3,6 +3,7 @@ import { config } from 'dotenv'
 config({path: '../.env'})
 import { RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
+import { AuthToken } from '@App/models/bartender';
 
 const SECRET = process.env.SECRET as string
 
@@ -26,7 +27,10 @@ const authenticate: RequestHandler = (req, res, next) => {
     }
 }
 
-const getToken = (data: Object): string => jwt.sign(data, SECRET, {expiresIn: '1hr'})
+const getToken = (data: Object): AuthToken => {
+    const token = jwt.sign(data, SECRET, {expiresIn: '1hr'})
+    return {token}
+}
 
 
 export {authenticate, getToken};

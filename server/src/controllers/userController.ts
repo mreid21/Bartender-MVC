@@ -26,7 +26,7 @@ const login: RequestHandler = async (req, res) => {
             })
             if(bartender) {
                 const isValidCredentials = await bcrypt.compare(password, bartender.password)
-                isValidCredentials ? res.status(200).send({token: getToken({username})}) : res.status(401).send({message: 'Invalid Credentials'})
+                isValidCredentials ? res.status(200).send(getToken({username})) : res.status(401).send({message: 'Invalid Credentials'})
             }
             else {
                 res.status(404).send({message: 'user not found'})

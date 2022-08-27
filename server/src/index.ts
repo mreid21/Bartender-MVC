@@ -4,6 +4,7 @@ import cors from 'cors'
 import { config } from 'dotenv'
 import { cocktailRoute } from './routes/cocktails'
 import { usersRoute } from './routes/users'
+import { ordersRoute } from './routes/orders'
 config({path: '../.env'})
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(cors({
 app.use(express.json())
 app.use('/cocktails', cocktailRoute)
 app.use('/users', usersRoute)
+app.use('/orders', ordersRoute)
 
 app.get('/', (req, res) => {
   res.send('hello world')

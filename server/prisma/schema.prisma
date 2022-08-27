@@ -25,11 +25,11 @@ model Cocktail {
 
 
 model OrderItem {
-  cockTailId Int
+  cocktailId Int
   orderId Int
-  @@id([cockTailId, orderId])
+  @@id([cocktailId, orderId])
   order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  cocktail Cocktail @relation(fields: [cockTailId], references: [id])
+  cocktail Cocktail @relation(fields: [cocktailId], references: [id])
 }
 
 

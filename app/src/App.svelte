@@ -1,10 +1,11 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+
+  import Cocktail from "./lib/Cocktail.svelte";
+
 </script>
 
 <main class="h-screen w-screen flex justify-center items-center">
-  <Counter/>
+  <Cocktail cocktail={{id: 1, name: "Cosmic Sunset", price: 50, img: {src: 'test-cocktail.jpg', alt: ''}}}/>
 </main>
 
 <style global>

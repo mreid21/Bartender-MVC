@@ -1,39 +1,21 @@
 <script lang="ts">
 
   import Cocktail from "./lib/Cocktail.svelte";
+  import Menu from "./lib/Menu.svelte";
   let cocktail = {
     id: 1, 
     name: "Cosmic Sunset",
-    price: 50,
+    price: 200,
     img: {src: 'test-cocktail.jpg', alt: ''}
   }
+
+  const menu = [cocktail, cocktail, cocktail, cocktail, cocktail, cocktail]
 </script>
 
 <main class="w-screen flex justify-center">
   <div class="container">
-    <div class="p-8 border-2 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-      <div class="lg:col-span-6">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      <div class="lg:col-span-3">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      <div class="lg:col-span-3">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      <div class="lg:col-span-4">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      <div class="lg:col-span-4">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      <div class="lg:col-span-4">
-        <Cocktail cocktail={cocktail}/>
-      </div>
-      
-
-      
-    </div>
+    <Menu menu={menu}/>
+    
   </div>
 </main>
 

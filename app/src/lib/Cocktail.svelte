@@ -5,7 +5,7 @@
 
 <div class="p-2 h-96 bg-center bg-cover rounded-md" style="{`background-image: url(./images/${cocktail.img.src})`}">
   <div class="w-full h-full flex flex-col justify-between">
-    <p class="text-white">{cocktail.name}</p>
+    <p class="text-white text-xl">{cocktail.name}</p>
     <button class="text-white button-36 self-end">Buy: {cocktail.price}</button>
   </div>
 </div>
@@ -27,8 +27,8 @@
   font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
   font-size: 16px;
   font-weight: 500;
-  height: 2rem;
-  padding: 0 0.6rem;
+  height: 2.5rem;
+  padding: 0 1rem;
   text-align: center;
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
   transition: all .5s;

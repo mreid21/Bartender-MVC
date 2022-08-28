@@ -1,14 +1,20 @@
 <script lang="ts">
+  import {fly} from 'svelte/transition'
   import type { CocktailType } from "../types/cocktail.type"
   export let cocktail: CocktailType
 </script>
 
-<div class="p-2 h-96 bg-center bg-cover rounded-md" style="{`background-image: url(./images/${cocktail.img.src})`}">
-  <div class="w-full h-full flex flex-col justify-between">
-    <p class="text-white text-xl">{cocktail.name}</p>
-    <button class="text-white button-36 self-end">Buy: {cocktail.price}</button>
+{#key cocktail}
+  <div in:fly={{y: 200, duration: 250 + (100 * cocktail.id)}} 
+       class="p-2 h-96 bg-center bg-cover rounded-md" 
+       style="{`background-image: url(./images/${cocktail.img.src})`}"
+  >
+    <div class="w-full h-full flex flex-col justify-between">
+      <p class="text-white text-xl">{cocktail.name}</p>
+      <button class="text-white button-36 self-end">Buy: {cocktail.price}</button>
+    </div>
   </div>
-</div>
+{/key}
 
 <style>
 
@@ -28,7 +34,7 @@
   font-size: 16px;
   font-weight: 500;
   height: 2.5rem;
-  padding: 0 1rem;
+  padding: 0 1.6rem;
   text-align: center;
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
   transition: all .5s;

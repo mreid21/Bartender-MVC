@@ -9,7 +9,8 @@ const getAllOrders: RequestHandler = async (req, res) => {
     include: {
       items: {
         select: {
-          cocktail: true
+          cocktail: true,
+          quantity: true
         }
       }
     },
@@ -34,10 +35,11 @@ const createOrder: RequestHandler = async (req, res) => {
           total,
           orderedAt: orderDate,
           items: {
-            create: items.map((id: number) => ({
+            create: items.map((item: {id: number, quantity: number})  => ({
+              quantity: item.quantity,
               cocktail: {
                 connect: {
-                  id
+                  id: item.id
                 }
               }
             }))

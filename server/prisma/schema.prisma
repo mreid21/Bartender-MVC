@@ -30,6 +30,7 @@ model OrderItem {
   @@id([cocktailId, orderId])
   order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
   cocktail Cocktail @relation(fields: [cocktailId], references: [id])
+  quantity Int
 }
 
 

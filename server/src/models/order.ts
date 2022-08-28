@@ -3,7 +3,7 @@ import { Cocktail } from "./cocktail"
 interface Order {
   total: number,
   orderedAt: Date,
-  items: number[]
+  items: {id: number, quantity: number}[]
 }
 
 

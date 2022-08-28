@@ -19,7 +19,7 @@ const isOrder = (body: unknown): body is Order => {
 
   if(typeof body === 'object' && (body.hasOwnProperty('total') && body.hasOwnProperty('orderedAt') && body.hasOwnProperty('items'))){
     const {total, orderedAt, items} = body as Order
-    return typeof total === 'number' && typeof orderedAt === 'string' && Array.isArray(items) && items.every(item => typeof item === 'number')
+    return typeof total === 'number' && typeof orderedAt === 'string' && Array.isArray(items) && items.every(item => typeof item.id === 'number' && typeof item.id === 'number')
   }
 
   return false

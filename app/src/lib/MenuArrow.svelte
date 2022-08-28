@@ -16,14 +16,17 @@
   }
 
   const navigate = () => (direction === 'left') ? dispatch('previous') : dispatch('next')
-  
+  const directionalStyle = () => 
+    direction === 'left' ? 'block flex items-center justify-center absolute h-full w-16 left-0 left' 
+                         : 'block flex items-center justify-center absolute h-full w-16 right-0 right'
+
 </script>
 <span on:mouseover={handleMouseOver}
       on:mouseleave={handleMouseLeave}
       on:focus={handleMouseOver}
       on:blur={handleMouseLeave}
       on:click={navigate}
-      class="{`block flex items-center justify-center absolute h-full w-16 ${direction === 'left' ? 'left' : 'right' }-0 ${direction === 'left' ? 'left' : 'right' }`}"
+      class="{directionalStyle()}"
 >
   {#if show}
     {#if direction === 'left'}

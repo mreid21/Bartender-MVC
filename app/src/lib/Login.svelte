@@ -1,12 +1,17 @@
 <script lang="ts">
-import App from "../App.svelte"
+import { navigateTo } from 'svelte-router-spa';
+
+  import {user} from '../store/store'
 
   let username = ''
   let password = ''
   let token = ''
   let promise = Promise.resolve('')
-  let showErrors = false
 
+  $: if (token !== '') {
+    user.set({token})
+    navigateTo('/user/orders')
+  }
 
   function handleClick() {
     promise = login()
@@ -20,15 +25,14 @@ import App from "../App.svelte"
     const auth = await res.json()
 
     if(auth && auth.token) {
-      return auth.token
+      token = auth.token
+      return token
     }
     if(res.status === 404) {
-      showErrors = true
       throw new Error('User not found')
     }
-    
+  
     if(res.status === 401){
-      showErrors = true
       throw new Error('Invalid login credentials')
     }
   }

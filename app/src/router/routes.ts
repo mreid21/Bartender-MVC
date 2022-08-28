@@ -1,8 +1,15 @@
 import OrderQueue from "../lib/OrderQueue.svelte"
 import Home from "../lib/Home.svelte"
 import Login from "../lib/Login.svelte"
+import { user } from '../store/store';
 
-const isLoggedIn = () => false
+function isLoggedIn(){
+  let loggedIn
+  user.subscribe((value) => {
+    loggedIn = value.token !== ''
+  })
+  return loggedIn
+}
 
 const routes = [
   {

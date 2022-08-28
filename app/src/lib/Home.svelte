@@ -17,7 +17,7 @@
   <div class="container overflow-hidden">
     <Menu menu={menu}/>
     <p>
-      <Navigate to="/login">take me to login: </Navigate>
+      <Navigate to="/mreid21/orders">take me to login: </Navigate>
     </p>
   </div>
 </main>

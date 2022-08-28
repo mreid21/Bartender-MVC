@@ -1,6 +1,5 @@
 <script lang="ts">
-import { navigateTo } from 'svelte-router-spa';
-
+  import { navigateTo } from 'svelte-router-spa';
   import {user} from '../store/store'
 
   let username = ''
@@ -15,6 +14,10 @@ import { navigateTo } from 'svelte-router-spa';
 
   function handleClick() {
     promise = login()
+  }
+
+  function cancel() {
+    navigateTo('/')
   }
 
   async function login() {
@@ -63,8 +66,9 @@ import { navigateTo } from 'svelte-router-spa';
         <p class="text-sm text-red-500">{error.message}</p>
       {/await}
     </div>
-    <div class="flex items-center justify-between">
-      <button on:click={handleClick} class="bg-blue-500 text-white text-sm capitalize font-bold py-2 px-4 rounded">sign in</button>
+    <div class="flex w-full flex-col gap-2">
+      <button on:click={handleClick} class="button-36">sign in</button>
+      <button on:click={cancel} class="inline-block font-semibold px-4 py-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">Cancel</button>
     </div>
   </div>
 </section>

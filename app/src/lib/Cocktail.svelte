@@ -2,10 +2,11 @@
   import {fly} from 'svelte/transition'
   import type { CocktailType } from "../types/cocktail.type"
   export let cocktail: CocktailType
+  export let delay: number
 </script>
 
 {#key cocktail}
-  <div in:fly={{y: 200, duration: 1000, delay: 250 * (cocktail.id)}} 
+  <div in:fly={{y: 200, duration: 1000, delay}} 
        class="p-2 h-96 bg-center bg-cover rounded-md" 
        style="{`background-image: url(./images/${cocktail.img.src})`}"
   >

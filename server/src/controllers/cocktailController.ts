@@ -52,6 +52,13 @@ const createCockTail: RequestHandler = async (req, res) => {
     }
 }
 
+const deleteCocktail: RequestHandler = async (req, res) => {
+    const id = parseInt(req.params.id)
+    await prisma.cocktail.delete({where: {id}})
+
+    res.sendStatus(203)
+}
 
 
-export {getCocktails, createCockTail}
+
+export {getCocktails, createCockTail, deleteCocktail}

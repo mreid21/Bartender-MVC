@@ -28,7 +28,7 @@ model CocktailImage {
   src String @unique
   alt String
   cocktailId Int @unique
-  cocktail Cocktail @relation(fields: [cocktailId], references: [id])
+  cocktail Cocktail @relation(fields: [cocktailId], references: [id], onDelete: Cascade)
 }
 
 

@@ -1,4 +1,4 @@
-export type CocktailType = {
+export interface CocktailType {
   id: number,
   name: string,
   price: number,
@@ -6,4 +6,9 @@ export type CocktailType = {
     src: string,
     alt: string
   }
+}
+
+export interface CocktailOrderType {
+  cocktail: CocktailType,
+  quantity: number
 }

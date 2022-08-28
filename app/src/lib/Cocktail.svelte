@@ -1,8 +1,17 @@
 <script lang="ts">
   import {fly} from 'svelte/transition'
+  import {cartItems} from '../store/store'
   import type { CocktailType } from "../types/cocktail.type"
+  import { navigateTo } from 'svelte-router-spa';
+
+
   export let cocktail: CocktailType
   export let delay: number
+
+  const addCocktail = () => {
+    cartItems.update(cartData => [...cartData, cocktail])
+    navigateTo('/checkout')
+  }
 </script>
 
 {#key cocktail}
@@ -12,7 +21,7 @@
   >
     <div class="w-full h-full flex flex-col justify-between">
       <p class="text-white text-xl">{cocktail.name}</p>
-      <button class="text-white button-36 self-end">Buy: {cocktail.price}</button>
+      <button on:click={addCocktail} class="text-white button-36 self-end">Buy: {cocktail.price}</button>
     </div>
   </div>
 {/key}

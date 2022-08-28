@@ -9,13 +9,31 @@
   }
 </script>
 
-<main>
-  <div class="grid place-items-center max-w-lg gap-8 md:grid-cols-2">
-    <Cocktail cocktail={cocktail}/>
-    <Cocktail cocktail={cocktail}/>
-    <Cocktail cocktail={cocktail}/>
-    <Cocktail cocktail={cocktail}/>
-    <Cocktail cocktail={cocktail}/>
+<main class="w-screen flex justify-center">
+  <div class="container">
+    <div class="p-8 border-2 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      <div class="lg:col-span-3">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      <div class="lg:col-span-3">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      <div class="lg:col-span-4">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      <div class="lg:col-span-4">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      <div class="lg:col-span-4">
+        <Cocktail cocktail={cocktail}/>
+      </div>
+      
+
+      
+    </div>
   </div>
 </main>
 

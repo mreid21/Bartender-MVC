@@ -3,7 +3,7 @@
   export let cocktail: CocktailType
 </script>
 
-<div class="p-2 w-64 h-96 bg-center bg-cover rounded-md" style="{`background-image: url(./images/${cocktail.img.src})`}">
+<div class="p-2 h-96 bg-center bg-cover rounded-md" style="{`background-image: url(./images/${cocktail.img.src})`}">
   <div class="w-full h-full flex flex-col justify-between">
     <p class="text-white">{cocktail.name}</p>
     <button class="text-white button-36 self-end">Buy: {cocktail.price}</button>

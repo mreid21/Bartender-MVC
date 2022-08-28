@@ -1,8 +1,11 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
   type Direction = 'left' | 'right'
   export let direction: Direction;
 
   let show: boolean = false
+  const dispatch = createEventDispatcher()
 
   const handleMouseOver = (e) => {
     show = true
@@ -11,11 +14,15 @@
   const handleMouseLeave = (e) => {
     show = false
   }
+
+  const navigate = () => (direction === 'left') ? dispatch('previous') : dispatch('next')
+  
 </script>
 <span on:mouseover={handleMouseOver}
       on:mouseleave={handleMouseLeave}
       on:focus={handleMouseOver}
       on:blur={handleMouseLeave}
+      on:click={navigate}
       class="{`block flex items-center justify-center absolute h-full w-16 ${direction === 'left' ? 'left' : 'right' }-0 ${direction === 'left' ? 'left' : 'right' }`}"
 >
   {#if show}

@@ -6,19 +6,25 @@
   export let menu: CocktailType[]
   const gridChildren = [6, 3, 3, 4, 4, 4]
 
+  const nextPage = () => {
+    alert('next page')
+  }
 
+  const previousPage = () => {
+    alert('previous page')
+  }
 </script>
 
 
 <div class="relative mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
   <!--make this an arrow component-->
-  <MenuArrow direction="left"/>
+  <MenuArrow on:previous={previousPage} direction="left"/>
   {#each menu as cocktail, i}
     <div class="{`lg:col-span-${gridChildren[i]}`}">
       <Cocktail cocktail={cocktail}/>
     </div>
   {/each}
-  <MenuArrow direction="right"/>
+  <MenuArrow on:next={nextPage} direction="right"/>
   
 </div>
 

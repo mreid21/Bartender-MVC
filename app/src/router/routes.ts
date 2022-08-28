@@ -5,8 +5,8 @@ import Checkout from "../lib/Checkout.svelte";
 import { user } from '../store/store';
 
 
-function isLoggedIn(){
-  let loggedIn
+function isLoggedIn(): boolean{
+  let loggedIn: boolean
   user.subscribe((value) => {
     loggedIn = value.token !== ''
   })
@@ -17,7 +17,7 @@ const routes = [
   {
     name: '/',
     component: Home,
-    onlyif: {guard: !isLoggedIn, redirect: '/login'}
+    onlyIf: {guard: !isLoggedIn, redirect: '/user/orders'}
   },
   {
     name: '/checkout',

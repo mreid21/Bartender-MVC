@@ -6,10 +6,13 @@ import { isCockTail } from '../utils/typeguards';
 
 const getCocktails: RequestHandler = async (_, res) => {
     const menu = await prisma.cocktail.findMany({
-        select: {
-            id: true,
-            name: true,
-            price: true
+        include: {
+            img: {
+                select: {
+                    src: true,
+                    alt: true
+                }
+            }
         }
     })
 
@@ -21,12 +24,19 @@ const createCockTail: RequestHandler = async (req, res) => {
     const newCocktail = isCockTail(req.body) ? req.body : undefined
 
     if(newCocktail){
-        const {name, price} = newCocktail
+        const {name, price, img} = newCocktail
+        const {src, alt} = img
         try {
             const cocktail = await prisma.cocktail.create({
                 data: {
                     name,
-                    price
+                    price,
+                    img: {
+                        create: {
+                            src,
+                            alt
+                        }
+                    }
                 }
             })
             res.status(201).send(cocktail)

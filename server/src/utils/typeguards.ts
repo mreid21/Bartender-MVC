@@ -6,8 +6,8 @@ const isCockTail = (body: unknown): body is Cocktail => {
   if(!body) return false
 
   if(typeof body === 'object' && (body.hasOwnProperty('name') && body.hasOwnProperty('price'))){
-    const {name, price} = body as Cocktail
-    return typeof name === 'string' && typeof price === 'number'
+    const {name, price, img} = body as Cocktail
+    return typeof name === 'string' && typeof price === 'number' && typeof img === 'object'
   }
 
   return false

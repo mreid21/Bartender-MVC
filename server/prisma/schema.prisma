@@ -21,6 +21,14 @@ model Cocktail {
   name String @unique
   price Decimal
   belongsTo OrderItem[]
+  img CocktailImage?
+}
+
+model CocktailImage {
+  src String @unique
+  alt String
+  cocktailId Int @unique
+  cocktail Cocktail @relation(fields: [cocktailId], references: [id])
 }
 
 

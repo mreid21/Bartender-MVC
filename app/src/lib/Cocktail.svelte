@@ -7,7 +7,7 @@
 
 {#key cocktail}
   <div in:fly={{y: 200, duration: 1000, delay}} 
-       class="p-2 h-96 bg-center bg-cover rounded-md" 
+       class="p-2 h-96 bg-center bg-cover rounded-md overflow-hidden" 
        style="{`background-image: url(./images/${cocktail.img.src})`}"
   >
     <div class="w-full h-full flex flex-col justify-between">

@@ -12,12 +12,12 @@
 </script>
 
 
-<div class="relative mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+<div class="relative mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-9">
   {#if menu.length !== 0}
     <MenuArrow on:previous={previousPage} direction="left"/>
   {/if}
   {#each menuSlice as cocktail, i}
-    <div class="{`lg:col-span-${spans[i]}`}">
+    <div class="lg:col-span-3">
       <Cocktail delay={transitionSteps[i]} cocktail={cocktail}/>
     </div>
     {:else}

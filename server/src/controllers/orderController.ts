@@ -24,6 +24,8 @@ const getAllOrders: RequestHandler = async (req, res) => {
 
 const createOrder: RequestHandler = async (req, res) => {
 
+  console.log(req)
+
   const order = isOrder(req.body) ? req.body : undefined
 
   if(order) {
@@ -55,6 +57,7 @@ const createOrder: RequestHandler = async (req, res) => {
     }
   }
   else {
+    
     res.status(400).send({message: 'Invalid Order'})
   }
 

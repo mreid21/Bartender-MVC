@@ -5,7 +5,7 @@
 </script>
 
 {#key cocktail}
-  <div in:fly={{y: 200, duration: 250 + (100 * cocktail.id)}} 
+  <div in:fly={{y: 200, duration: 1000, delay: 250 * (cocktail.id)}} 
        class="p-2 h-96 bg-center bg-cover rounded-md" 
        style="{`background-image: url(./images/${cocktail.img.src})`}"
   >

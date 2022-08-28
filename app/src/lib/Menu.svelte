@@ -6,7 +6,7 @@
   let index = 0
   $: menuSlice = index === 0 ? menu.slice(0, 6) : menu.slice(6)
   const spans = [6, 3, 3, 4, 4, 4]
-  const transitionSteps = [500, 750, 1000, 1250, 1500, 2000]
+  const transitionSteps = [300, 400, 500, 600, 700, 800]
   const nextPage = () => index === 0 ? index += 1 : index
   const previousPage = () => index === 1 ? index -= 1 : index
 </script>

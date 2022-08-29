@@ -76,7 +76,7 @@
           <div>
             <p class="text-2xl mb-4 text-end">Total: <span class="text-3xl font-semibold">${total}</span></p>
             <span class="inline-block px-4 py-2 mr-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">
-              <Navigate to="/">Go back</Navigate>
+              <Navigate to="/">Continue shopping</Navigate>
             </span>
             <button on:click={checkout} class="button-36">Checkout</button>
           </div>

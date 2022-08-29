@@ -45,11 +45,39 @@ describe('GET cocktails', () => {
     })
 })
 
-describe('GET User', () => {
+describe('GET user', () => {
 
     it('returns a token upon successful login', async () => {
         const response = await request(process.env.BASE_URL).get('/users/jsmith21/1234')
 
         expect(typeof response.body['token']).toBe("string")
     })
+
+    it('sends 401 to users with an invalid login', async () => {
+        const response = await request(process.env.BASE_URL).get('/users/jsmith21/12235')
+
+        expect(response.statusCode).toBe(401)
+    })
+})
+
+describe('GET order', () => {
+    
+
+
+    it('gets all orders when authenticated', async () => {
+
+        const res = await request(process.env.BASE_URL).get('/users/jsmith21/1234')
+        const {token} = res.body
+        const response = await request(process.env.BASE_URL).get('/orders').set('Authorization', 'Bearer ' + token)
+
+        expect(response.statusCode).toBe(200)
+    })
+
+    it('prevents accessing orders without being authenticated', async () => {
+      
+        const response = await request(process.env.BASE_URL).get('/orders')
+
+        expect(response.statusCode).toBe(401)
+    })
+
 })

@@ -3,7 +3,6 @@
   import type { DecodedToken } from "src/types/auth.type";
   import { navigateTo } from 'svelte-router-spa';
   import {user} from '../store/store'
-  import {onMount} from 'svelte'
 
   let username = ''
   let password = ''

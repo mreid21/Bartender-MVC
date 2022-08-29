@@ -2,7 +2,8 @@
   import {user} from '../store/store'
   import {onMount} from 'svelte'
   import Order from './Order.svelte'
-import { navigateTo } from 'svelte-router-spa';
+  import { navigateTo } from 'svelte-router-spa';
+  
   let orders = []
   let token = ''
   user.subscribe((value) => {
@@ -25,6 +26,23 @@ import { navigateTo } from 'svelte-router-spa';
       navigateTo('/')
     }
   })
+
+  const removeOrder = async (event) => {
+    const id = event.detail
+
+    const res = await fetch(`http://localhost:8080/orders/${id}`, {
+      method: 'DELETE',
+      headers: {'Authorization': 'Bearer-Token ' + token}
+    })
+
+    if(res.status === 203){
+      orders = orders.filter(order => order.id !== id)
+    }
+    
+
+  }
+
+  
 </script>
 
 <div class="w-screen flex justify-center">
@@ -33,7 +51,7 @@ import { navigateTo } from 'svelte-router-spa';
     <ul class="mb-8">
       <li class="list-style-none w-full flex flex-col gap-8">
         {#each orders as order}
-          <Order id={order.id} items={order.items} total={order.total} orderedAt={order.orderedAt} />
+          <Order on:complete={removeOrder} id={order.id} items={order.items} total={order.total} orderedAt={order.orderedAt} />
         {/each}
       </li>
     </ul>

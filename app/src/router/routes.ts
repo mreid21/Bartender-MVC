@@ -15,6 +15,7 @@ function isLoggedIn(): boolean {
   return token !== ''
 }
 
+//we like to pretend the route guards work
 const routes = [
   {
     name: '/',

@@ -1,4 +1,7 @@
  <script lang="ts">
+
+  import { createEventDispatcher } from 'svelte';
+
   export let id: number
   export let total: number
   export let orderedAt: string
@@ -12,6 +15,9 @@
     const clockTime = time.slice(0, 2).join(':')
     return `${clockTime} ${timeOfDay}`
   }
+
+  const dispatch = createEventDispatcher()
+  const completeOrder = () => dispatch('complete', id)
 
  </script>
  <!--Order-->
@@ -37,11 +43,16 @@
       {/each}
       
     </ul>
+    <!--End Items-->
+    <!--Footer-->
     <div class="mx-8 flex justify-between">
       <p>Total: </p>
       <p>${total}</p>
     </div>
-    <!--End Items-->
+    <div class="flex mt-4 mx-4 justify-end">
+      <button on:click={completeOrder} class="inline-block font-semibold px-4 py-2 border rounded-lg hover:bg-green-700 hover:text-white transition">Complete</button>
+    </div>
+    
   </div>
   <!--End Summary-->
 </div>

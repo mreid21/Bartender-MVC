@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {user} from '../store/store'
+  import {user, cartItems} from '../store/store'
   import {onMount} from 'svelte'
   import Order from './Order.svelte'
   import { Navigate, navigateTo } from 'svelte-router-spa';
@@ -42,6 +42,7 @@
   const logout = () => {
     localStorage.clear()
     user.set({token: '', username: ''})
+    cartItems.update(() => [])
     navigateTo('/')
   }
 

@@ -24,8 +24,6 @@ const getAllOrders: RequestHandler = async (req, res) => {
 
 const createOrder: RequestHandler = async (req, res) => {
 
-  console.log(req)
-
   const order = isOrder(req.body) ? req.body : undefined
 
   if(order) {
@@ -64,5 +62,12 @@ const createOrder: RequestHandler = async (req, res) => {
   
 }
 
+const deleteOrder: RequestHandler = async (req, res) => {
+  const id = parseInt(req.params.id)
 
-export {getAllOrders, createOrder}
+  await prisma.order.delete({where: {id}})
+  res.sendStatus(203)
+}
+
+
+export {getAllOrders, createOrder, deleteOrder}

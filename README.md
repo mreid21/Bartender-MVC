@@ -21,7 +21,7 @@ There is only one router for a svelte SPA and it is a little questionable
 
 ## Testing the API
 I wrote a few tests with jest and supertest to simplify testing some of the API endpoints like the auth.
-The following assumes you have already completed setup.
+The following assumes you have already completed setup. **Please use the tests I spent a lot of time on them** 😭
 ### Run the tests
 * cd into server
 * open terminal

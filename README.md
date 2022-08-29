@@ -3,12 +3,16 @@ This app was made with <3 using Svelte + TS and Express + TS. Sorry if there is 
 There is only one router for a svelte SPA and it is a little questionable
 ## Setup
 * App
+  * cd into app
+  * open terminal
   * ```npm run install```
   * create `.env.local` file
   * add `BASE_URL="http://localhost:8080"` to `.env.local`
   * `npm run dev`
   
 * Server
+  * cd into server
+  * open terminal
   * add `.env` file
   * add `PORT=8080` to `.env`
   * add `BASE_URL="http://localhost:8080"` to `.env`

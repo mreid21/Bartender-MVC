@@ -10,6 +10,7 @@
   $: asDate = new Date(orderedAt)
   $: time = formatTime(asDate.toLocaleTimeString().split(':'))
 
+  //prettify datetime object
   const formatTime = (time: string[]): string =>  {
     const timeOfDay = time[2].split(' ')[1]
     const clockTime = time.slice(0, 2).join(':')

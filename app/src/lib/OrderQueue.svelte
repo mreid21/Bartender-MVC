@@ -54,7 +54,10 @@
     {#if orders.length > 0}
       <div class="flex justify-between items-center mb-8">
         <h1 class="text-2xl font-semibold text-slate-800">Pending Orders</h1>
-        <button on:click={logout} class="inline-block px-4 py-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">Logout</button>
+        <div>
+          <span class="mr-2 underline cursor-pointer"><Navigate to="/">Home</Navigate></span>
+          <button on:click={logout} class="inline-block px-4 py-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">Logout</button>
+        </div>
       </div>
     {/if}
     <ul class="mb-4">

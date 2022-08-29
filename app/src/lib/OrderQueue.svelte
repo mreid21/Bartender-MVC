@@ -1,6 +1,7 @@
 <script lang="ts">
   import {user} from '../store/store'
   import {onMount} from 'svelte'
+  import Order from './Order.svelte'
   let orders = []
   let token = ''
   user.subscribe((value) => {
@@ -15,6 +16,16 @@
     orders = allOrders
   })
 </script>
-<div>
-  <p>{JSON.stringify(orders)}</p>
+
+<div class="w-screen flex justify-center">
+  <div class="w-full lg:w-1/2 shadow-md p-4">
+    <h1 class="mb-2">Pending Orders</h1>
+    <ul class="mb-8">
+      <li class="list-style-none w-full flex flex-col gap-8">
+        {#each orders as order}
+          <Order id={order.id} items={order.items} total={order.total} orderedAt={order.orderedAt} />
+        {/each}
+      </li>
+    </ul>
+  </div>
 </div>

@@ -2,18 +2,28 @@
   import {user} from '../store/store'
   import {onMount} from 'svelte'
   import Order from './Order.svelte'
+import { navigateTo } from 'svelte-router-spa';
   let orders = []
   let token = ''
   user.subscribe((value) => {
     token = value.token
+    console.log(token)
   })
 
   onMount(async () => {
     const res = await fetch('http://localhost:8080/orders', {
       headers: {'Authorization': 'Bearer-Token ' + token}
     })
-    const allOrders = await res.json()
-    orders = allOrders
+
+    if(res.ok){
+      const allOrders = await res.json()
+      orders = allOrders
+    }
+    else {
+      localStorage.clear()
+      user.set({username: '', token: ''})
+      navigateTo('/')
+    }
   })
 </script>
 

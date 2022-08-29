@@ -3,13 +3,19 @@
   import type { DecodedToken } from "src/types/auth.type";
   import { navigateTo } from 'svelte-router-spa';
   import {user} from '../store/store'
+  import {onMount} from 'svelte'
 
   let username = ''
   let password = ''
   let token = ''
   let promise = Promise.resolve('')
 
+  user.subscribe((value) => {
+    token = value.token
+  })
+
   $: if (token !== '') {
+
     const {username}: DecodedToken = jwt_decode(token)
     user.set({token, username})
     navigateTo(`employees/${username}/orders`)
@@ -30,15 +36,12 @@
     const res = await fetch(`http://localhost:8080/users/${username}/${password}`)
     const auth = await res.json()
 
-    if(auth && auth.token) {
+    if(res.ok && auth.token) {
       token = auth.token
+      localStorage.setItem('auth', token)
       return token
     }
-    if(res.status === 404) {
-      throw new Error('User not found')
-    }
-  
-    if(res.status === 401){
+    else {
       throw new Error('Invalid login credentials')
     }
   }

@@ -3,21 +3,23 @@ import Home from "../lib/Home.svelte"
 import Login from "../lib/Login.svelte"
 import Checkout from "../lib/Checkout.svelte";
 import { user } from '../store/store';
+import {get} from 'svelte/store'
 
+let token = ''
+let username = ''
 
-function isLoggedIn(): boolean{
-  let loggedIn: boolean
-  user.subscribe((value) => {
-    loggedIn = value.token !== ''
-  })
-  return loggedIn
+function isLoggedIn(): boolean {
+  username = get(user).username
+  token = get(user).token
+  
+  return token !== ''
 }
 
 const routes = [
   {
     name: '/',
     component: Home,
-    onlyIf: {guard: !isLoggedIn, redirect: '/user/orders'}
+    onlyIf: {guard: !isLoggedIn, redirect: `/${username}/orders`}
   },
   {
     name: 'employees/:bartender/orders',
@@ -32,7 +34,7 @@ const routes = [
   {
     name: '/login',
     component: Login,
-    onlyIf: {guard: !isLoggedIn, redirect: '/login'}
+    onlyIf: {guard: !isLoggedIn, redirect: `/${username}/orders`}
   },
   
   

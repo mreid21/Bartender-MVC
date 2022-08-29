@@ -11,6 +11,8 @@
 
   const reduceQuantity = () => dispatch('reduce', item.cocktail.id)
 
+  const increaseQuantity = () => dispatch('increase', item.cocktail)
+
 </script>
 <section in:fade={{duration: 500, delay: 200}} class="flex gap-4 flex-start w-full p-4 h-48  h-48 border-b-2">
   <div class="w-32 basis-1/2 lg:basis-1/4">
@@ -33,7 +35,7 @@
           <span class="m-auto text-2xl font-thin">-</span>
         </button>
         <span>{item.quantity}</span>
-        <button class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-8 w-8 cursor-pointer">
+        <button on:click={increaseQuantity} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-8 w-8 cursor-pointer">
           <span class="m-auto text-xl font-thin">+</span>
         </button>
       </div>

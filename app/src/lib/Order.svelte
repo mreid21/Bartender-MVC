@@ -32,12 +32,17 @@
 
   <!--Summary-->
   <div class="lg:mx-8">
-    <p class="mb-2 font-semibold">Order summary:</p>
+    <p class="mb-4 font-semibold">Order summary:</p>
     <!--Items-->
     <ul class="mx-8 border-b mb-2">
       {#each items as item}
-        <li class="flex justify-between mb-4">
-          <span class="block">{item.cocktail.name}</span>
+        <li class="flex justify-between items-center mb-4">
+          <div class="flex gap-4 items-center">
+            <div class="w-16 h-16">
+              <img class="rounded-md h-full w-full object-cover" src={`/images/cosmic-sunset.jpg`} alt="test">
+            </div>
+            <span class="font-semibold">{item.cocktail.name}</span>
+          </div>
           <span class="block">{item.quantity}</span>
         </li>
       {/each}

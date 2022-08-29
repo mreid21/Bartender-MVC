@@ -1,4 +1,6 @@
 <script lang="ts">
+  import jwt_decode from "jwt-decode";
+  import type { DecodedToken } from "src/types/auth.type";
   import { navigateTo } from 'svelte-router-spa';
   import {user} from '../store/store'
 
@@ -8,8 +10,9 @@
   let promise = Promise.resolve('')
 
   $: if (token !== '') {
-    user.set({token})
-    navigateTo('/user/orders')
+    const {username}: DecodedToken = jwt_decode(token)
+    user.set({token, username})
+    navigateTo(`employees/${username}/orders`)
   }
 
   function handleClick() {

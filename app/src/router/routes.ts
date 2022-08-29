@@ -20,6 +20,11 @@ const routes = [
     onlyIf: {guard: !isLoggedIn, redirect: '/user/orders'}
   },
   {
+    name: 'employees/:bartender/orders',
+    component: OrderQueue,
+    onlyIf: { guard: isLoggedIn, redirect: '/login' }
+  },
+  {
     name: '/checkout',
     component: Checkout,
     onlyIf: {guard: !isLoggedIn, redirect: '/login'}
@@ -29,11 +34,7 @@ const routes = [
     component: Login,
     onlyIf: {guard: !isLoggedIn, redirect: '/login'}
   },
-  {
-    name: '/:bartender/orders',
-    component: OrderQueue,
-    onlyIf: { guard: isLoggedIn, redirect: '/login' }
-  },
+  
   
 ]
 

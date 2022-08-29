@@ -1,7 +1,7 @@
-import type { CocktailOrderType, CocktailType } from 'src/types/cocktail.type';
+import type { AuthUser } from 'src/types/auth.type';
 import { derived, writable } from 'svelte/store';
 
-export const user = writable({token: ''});
+export const user = writable<AuthUser>({token: '', username: ''});
 
 export const cartItems = writable([])
 

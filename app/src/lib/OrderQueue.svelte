@@ -20,7 +20,6 @@
       orders = allOrders
     }
     else {
-      localStorage.clear()
       user.set({username: '', token: ''})
       navigateTo('/')
     }

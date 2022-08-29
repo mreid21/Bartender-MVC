@@ -9,7 +9,11 @@ const getAllOrders: RequestHandler = async (req, res) => {
     include: {
       items: {
         select: {
-          cocktail: true,
+          cocktail: {
+            include: {
+              img: true
+            }
+          },
           quantity: true
         }
       }

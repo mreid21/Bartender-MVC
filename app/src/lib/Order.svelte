@@ -39,7 +39,7 @@
         <li class="flex justify-between items-center mb-4">
           <div class="flex gap-4 items-center">
             <div class="w-16 h-16">
-              <img class="rounded-md h-full w-full object-cover" src={`/images/cosmic-sunset.jpg`} alt="test">
+              <img class="rounded-md h-full w-full object-cover" src={`/images/${item.cocktail.img.src}`} alt="test">
             </div>
             <span class="font-semibold">{item.cocktail.name}</span>
           </div>

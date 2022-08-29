@@ -12,7 +12,7 @@ function isLoggedIn(): boolean {
   username = get(user).username
   token = get(user).token
   
-  return token !== ''
+  return token !== '' || localStorage.getItem('auth') !== null
 }
 
 //we like to pretend the route guards work
@@ -35,7 +35,7 @@ const routes = [
     name: '/login',
     component: Login,
     onlyIf: {guard: !isLoggedIn, redirect: `employees/${username}/orders`}
-  },
+  }
   
   
 ]

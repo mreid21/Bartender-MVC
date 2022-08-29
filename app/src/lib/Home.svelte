@@ -2,10 +2,11 @@
   import Menu from "./Menu.svelte";
   import '../app.css'
   import {onMount} from 'svelte'
-  import {user} from '../store/store'
-import { Navigate, navigateTo } from "svelte-router-spa";
+  import {user, cartItems} from '../store/store'
+  import { Navigate, navigateTo } from "svelte-router-spa";
   let menu = []
   let username = ''
+
 
   user.subscribe((value) => {
     value.username ? username = value.username : username = ''
@@ -14,12 +15,13 @@ import { Navigate, navigateTo } from "svelte-router-spa";
   onMount(async () => {
     const token = localStorage.getItem('auth')
     const username = localStorage.getItem('username')
-
+    console.log(token)
     if(token && username){
       user.set({token, username})
     }
     const res = await fetch('http://localhost:8080/cocktails')
     menu = await res.json()
+
   })
 
   const logout = () => {
@@ -27,6 +29,7 @@ import { Navigate, navigateTo } from "svelte-router-spa";
       localStorage.clear()
       user.set({token: '', username: ''})
     }
+    cartItems.update(() => [])
   }
 
   const goToOrders = () => {
@@ -45,7 +48,6 @@ import { Navigate, navigateTo } from "svelte-router-spa";
           <span class="font-semibold">{username}</span>
           <button on:click={goToOrders} class="button-36">Orders</button>
           <button on:click={logout} class="inline-block px-4 py-2 mr-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">Logout</button>
-          
         </div>
 
         {:else}

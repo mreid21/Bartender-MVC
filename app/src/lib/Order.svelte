@@ -32,7 +32,7 @@
 
   <!--Summary-->
   <div class="lg:mx-8">
-    <p class="mb-4 font-semibold">Order summary:</p>
+    <p class="mb-4 ml-8 lg:ml-0 font-semibold">Order summary:</p>
     <!--Items-->
     <ul class="mx-8 border-b mb-2">
       {#each items as item}

@@ -16,7 +16,7 @@
 </script>
 <section in:fade={{duration: 500, delay: 200}} class="flex gap-4 flex-start w-full p-4 h-48  h-48 border-b-2">
   <div class="w-32 basis-1/2 lg:basis-1/4">
-    
+    <img class="w-full h-full object-cover" src={`./images/${item.cocktail.img.src}`} alt="">
   </div>
   <div class="flex justify-between basis-full">
     <div class="flex flex-col justify-between">

@@ -8,6 +8,9 @@
   let rawItems = []
 
   $: total = items.map(item => item.cocktail.price * item.quantity).reduce((prev, next) => prev + next, 0)
+  $: if(items.length === 0) {
+    navigateTo('/')
+  }
   cart.subscribe(cartData => {
     items = cartData
   })
@@ -29,7 +32,7 @@
       headers:{'Content-Type':'application/json'}
     })
 
-    cartItems.update(() => [])
+    clearCart()
     navigateTo('/')
   }
 
@@ -55,6 +58,10 @@
     const update = [...rawItems, increased]
     cartItems.update(() => [...update])
   }
+
+  const clearCart = () => {
+    cartItems.update(() => [])
+  }
 </script>
 
 
@@ -64,14 +71,15 @@
       {#each items as item}
           <OrderItem on:increase={increaseQuantity} on:reduce={reduceQuantity} on:remove={remove} item={item}/>  
       {/each}
-      <div class="flex flex-col items-end px-4">
-        <p class="text-2xl mb-4">Total: <span class="text-3xl font-semibold">${total}</span></p>
-        <div>
-          <span class="inline-block px-4 py-2 mr-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">
-            <Navigate to="/">Go back</Navigate>
-          </span>
-          <button on:click={checkout} class="button-36">Checkout</button>
-        </div>
+      <div class="flex justify-between items-end px-4">
+        <button on:click={clearCart} class="inline-block px-4 py-2 mr-2 border bg-red-500 text-white rounded-lg hover:bg-red-700 font-semibold transition">Clear cart</button>
+          <div>
+            <p class="text-2xl mb-4 text-end">Total: <span class="text-3xl font-semibold">${total}</span></p>
+            <span class="inline-block px-4 py-2 mr-2 border rounded-lg hover:bg-slate-600 hover:text-white transition">
+              <Navigate to="/">Go back</Navigate>
+            </span>
+            <button on:click={checkout} class="button-36">Checkout</button>
+          </div>
       </div>
     </div>
   </div>

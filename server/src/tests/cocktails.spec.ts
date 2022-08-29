@@ -44,3 +44,12 @@ describe('GET cocktails', () => {
         expect(response.body[0]).toMatchObject(expected)
     })
 })
+
+describe('GET User', () => {
+
+    it('returns a token upon successful login', async () => {
+        const response = await request(process.env.BASE_URL).get('/users/jsmith21/1234')
+
+        expect(typeof response.body['token']).toBe("string")
+    })
+})

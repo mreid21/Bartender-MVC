@@ -17,6 +17,8 @@
 
     const {username}: DecodedToken = jwt_decode(token)
     user.set({token, username})
+    localStorage.setItem('auth', token)
+    localStorage.setItem('username', username)
     navigateTo(`employees/${username}/orders`)
   }
 
@@ -37,7 +39,6 @@
 
     if(res.ok && auth.token) {
       token = auth.token
-      localStorage.setItem('auth', token)
       return token
     }
     else {

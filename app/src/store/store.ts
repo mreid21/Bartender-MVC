@@ -1,12 +1,8 @@
 import type { AuthUser } from 'src/types/auth.type';
 import { derived, writable } from 'svelte/store';
 
-const getTokenFromStorage = (): string => {
-  const token = localStorage.getItem('auth')
-  return token ? token : ''
-}
 
-export const user = writable<AuthUser>({token: getTokenFromStorage(), username: ''});
+export const user = writable<AuthUser>({token: '', username: ''});
 
 export const cartItems = writable([])
 

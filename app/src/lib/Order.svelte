@@ -21,10 +21,10 @@
 
  </script>
  <!--Order-->
- <div class="w-full border-b py-4">
+ <div class="w-full border py-4">
   <!--Header-->
-  <div class="flex justify-between items-center">
-    <p>#{id}</p>
+  <div class="flex mb-2 justify-between items-center">
+    <p class="ml-8 lg:mr-16">#{id}</p>
     <!--use actual time-->
     <p class="mr-8 lg:mr-16">{time}</p>
   </div>
@@ -32,11 +32,11 @@
 
   <!--Summary-->
   <div class="lg:mx-8">
-    <p class="mb-2">Order summary:</p>
+    <p class="mb-2 font-semibold">Order summary:</p>
     <!--Items-->
     <ul class="mx-8 border-b mb-2">
       {#each items as item}
-        <li class="flex justify-between mb-2">
+        <li class="flex justify-between mb-4">
           <span class="block">{item.cocktail.name}</span>
           <span class="block">{item.quantity}</span>
         </li>
@@ -47,10 +47,10 @@
     <!--Footer-->
     <div class="mx-8 flex justify-between">
       <p>Total: </p>
-      <p>${total}</p>
+      <p class="font-bold">${total}</p>
     </div>
     <div class="flex mt-4 mx-4 justify-end">
-      <button on:click={completeOrder} class="inline-block font-semibold px-4 py-2 border rounded-lg hover:bg-green-700 hover:text-white transition">Complete</button>
+      <button on:click={completeOrder} class="inline-block text-white bg-green-600 font-semibold px-4 py-2 border rounded-lg hover:bg-green-700 transition">Complete</button>
     </div>
     
   </div>

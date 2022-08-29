@@ -8,6 +8,7 @@
   let rawItems = []
 
   $: total = items.map(item => item.cocktail.price * item.quantity).reduce((prev, next) => prev + next, 0)
+
   $: if(items.length === 0) {
     navigateTo('/')
   }
@@ -22,11 +23,12 @@
   const checkout = async () => {
     if(items.length === 0) return
 
+    //prepare order items for api
     const orderItems: OrderItemType[] = items.map(item => ({id: item.cocktail.id, quantity: item.quantity}))
     const order: OrderType = {total, items: orderItems, orderedAt: new Date()}
     const orderDTO = JSON.stringify(order)
 
-    await fetch('http://localhost:8080/orders', {
+    await fetch(`${import.meta.env.VITE_BASE_URL}/orders`, {
       method: 'POST',
       body: orderDTO,
       headers:{'Content-Type':'application/json'}

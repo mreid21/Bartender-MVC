@@ -11,7 +11,7 @@
   })
 
   onMount(async () => {
-    const res = await fetch('http://localhost:8080/orders', {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/orders`, {
       headers: {'Authorization': 'Bearer-Token ' + token}
     })
 
@@ -28,7 +28,7 @@
   const removeOrder = async (event) => {
     const id = event.detail
 
-    const res = await fetch(`http://localhost:8080/orders/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/orders/${id}`, {
       method: 'DELETE',
       headers: {'Authorization': 'Bearer-Token ' + token}
     })

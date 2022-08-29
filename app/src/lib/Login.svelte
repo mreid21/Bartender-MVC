@@ -34,7 +34,7 @@
 
     if(username === '' || password === '') throw new Error('Please fill out all fields')
 
-    const res = await fetch(`http://localhost:8080/users/${username}/${password}`)
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/${username}/${password}`)
     const auth = await res.json()
 
     if(res.ok && auth.token) {

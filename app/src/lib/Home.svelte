@@ -19,7 +19,7 @@
     if(token && username){
       user.set({token, username})
     }
-    const res = await fetch('http://localhost:8080/cocktails')
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/cocktails`)
     menu = await res.json()
 
   })

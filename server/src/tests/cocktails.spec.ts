@@ -5,14 +5,6 @@ config({path: '../../.env'})
 
 describe('GET cocktails', () => {
 
-    /*beforeAll(async () => {
-        const res = await request(process.env.BASE_URL).post('/cocktails').send(cocktail)
-        id = res.body.id
-    })
-
-    afterAll(async () => {
-        await request('http://localhost:8080').delete(`/cocktails/${id}`)
-    })*/
 
     it('responds with status code 200', async () => {
         const response = await request(process.env.BASE_URL).get('/cocktails')
@@ -80,4 +72,55 @@ describe('GET order', () => {
         expect(response.statusCode).toBe(401)
     })
 
+})
+
+describe('POST order', () => {
+
+    let authToken = ''
+    //new order template
+    const order =  {
+        total: 300,
+        orderedAt: new Date(),
+        items: [
+            {
+                "id": 2,
+                "quantity": 2
+            },
+        ]
+    }
+
+
+    beforeAll(async () => {
+
+        //set auth token
+        const res = await request(process.env.BASE_URL).get('/users/jsmith21/1234')
+        const {token} = res.body
+        authToken = token
+    })
+
+    afterEach(async () => {
+        //delete order created by test
+        const response = await request(process.env.BASE_URL).get('/orders').set('Authorization', 'Bearer ' + authToken)
+        await request(process.env.BASE_URL).delete(`/orders/${response.body[0].id}`).set('Authorization', 'Bearer ' + authToken)
+
+    })
+
+    it('responds with status code 201', async () => {
+        const response = await request(process.env.BASE_URL).post('/orders').send(order).set('Content-Type' , 'application/json')
+        console.log(response)
+        expect(response.statusCode).toBe(201)
+    })
+
+    it('should echo a valid order', async () => {
+        const expected =  {
+            total: "300",
+            orderedAt: order.orderedAt.toJSON(),
+        }
+
+
+        const response = await request(process.env.BASE_URL).post('/orders').send(order).set('Content-Type' , 'application/json')
+        console.log(response)
+        expect(response.body).toMatchObject(expected)
+        expect(typeof response.body["id"]).toBe("number")
+    })
 })

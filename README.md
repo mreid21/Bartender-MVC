@@ -5,7 +5,7 @@ There is only one router for a svelte SPA and it is a little questionable
 * App
   * cd into app
   * open terminal
-  * ```npm run install```
+  * ```npm install```
   * create `.env.local` file
   * add `BASE_URL="http://localhost:8080"` to `.env.local`
   * `npm run dev`
@@ -18,7 +18,7 @@ There is only one router for a svelte SPA and it is a little questionable
   * add `BASE_URL="http://localhost:8080"` to `.env`
   * add `DATABASE_URL="file:./dev.db"` to `.env`
   * add `SECRET=<your secret>` to `.env`
-  * `npm run install`
+  * `npm install`
   * `npx prisma generate`
   * `npx tsc`
   * `npm run start`
